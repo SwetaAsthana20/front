@@ -1,7 +1,6 @@
 .field{
     margin: 0px auto;
-    width:550px;
-    height: 300px;
+    height: 350px;
     font-size: larger;
     background-color: lightcyan;
 }
@@ -12,6 +11,7 @@
 }
 .in-heading{
     margin-left: 0ex;
+    width:10px;
 }
 .style
 {
@@ -34,9 +34,7 @@
     border-radius: 12px;
     background-color:darkturquoise;
 } 
-.center{
-    text-align: center;
-}
+
 .bgimage{
     background-image: url("src/assets/image.jpg");
     background-size: cover;

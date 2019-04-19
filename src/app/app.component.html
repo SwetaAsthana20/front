@@ -1,28 +1,71 @@
-<div class="bgimage">
-  <h1><marquee>Store your data in minimum time</marquee></h1>
-    <br><br><br><br>
-  <fieldset class="field">
-    <div class="heading">
-      <h2><i class="in_heading"></i>Enter Data to be sent</h2>
-    </div>
-  <br>
- <div class="style">
-  File Type:
-  <select style=" border: 2px solid darkturquoise" #t1  (click)=abc(t1.value) >
-    <option value=".txt"> .txt </option>
-    <option value=".json"> .json </option>
-    <option value=".xml"> .xml </option>
-    <option value=".csv"> .csv </option>
-  </select>
-  <br><br>
-  Upload Your File:
-  <input style=" border: 2px solid darkturquoise" type="file" value="file"  accept={{t}}>
-  <br><br>
-<div class="center">
-  <button class="buttons" type="submit">Submit</button>
 
-  <input class="buttons" type="reset">
-</div></div>
-  </fieldset>
+<div class="bgimage">
+    <h1><marquee> Store your data in minimum time </marquee></h1>
+    
+    <div *ngIf='disp'>
+      <fieldset class="field" style=" width:500px">
+        <h2 style="  background-color: darkturquoise">Choose the type of data you want to send</h2>
+        Choose one:
+        <select style=" border: 2px solid darkturquoise" #t2  >
+          <option value="file"> ATTACH FILE </option>
+          <option value="form"> FILL FORM </option>
+        </select>
+        <br><br>
+        <button  class="buttons" (click)=option(t2.value)>Submit</button>
+        <br>
+      </fieldset>
+    </div>
+
+
+  <div  *ngIf='disp1'>
+ 
+    <fieldset class="field" style=" width:550px">
+      <div class="style">
+        <h2 style="  background-color: darkturquoise" >Enter data to be sent</h2>
+         File Type:
+        <select style=" border: 2px solid darkturquoise" #t1  (click)=abc(t1.value) >
+            <option value=".txt"> .txt </option>
+            <option value=".json"> .json </option>
+            <option value=".xml"> .xml </option>
+            <option value=".csv"> .csv </option>
+        </select>
+        <br><br>
+        Upload Your File:
+        <input style=" border: 1px solid darkturquoise" type="file" value="file" #file accept={{t}} (change)="fileChanged($event)">
+        <br><br>
+        <div class="center">
+          <button class="buttons" type="submit" (click)="send(file.value)">Submit</button>
+          <input class="buttons" type="reset">
+        </div>
+      </div>
+      <button class="buttons" (click)="back()" >BACK TO PREVIOUS</button>
+      </fieldset>
+  </div>
+
+
+
+  <div *ngIf='disp2'>
+    <fieldset class="field" style=" width:550px">
+    <div class="style">
+      <h2 style="  background-color: darkturquoise" >Enter data to be sent</h2>
+        Name : <input type="text" name="name"  #name><br><br>
+        Employee Id : <input type="text" name="id"  #ids><br><br>
+        Salary : <input type="number" name="salary"  #salary/>
+        <br>
+        <input type="submit" class="buttons" (click)="onSubmit(name.value,ids.value,salary.value)">
+        <input class="buttons" type="reset" value="RESET">
+
+    </div>
+    <button class="buttons" type="submit" (click)="back()" >BACK TO PREVIOUS</button>
+    </fieldset>
+  </div>
+
+
+  <div *ngIf='disp3'>
+    <fieldset class="field" style=" width:550px">
+        <h2 style="  background-color: darkturquoise" > Thank You !!!! 😀Your Data Has Been Sent 😀............😍</h2>
+        <button class="buttons" type="submit" (click)="back()" >BACK TO PREVIOUS</button>
+    </fieldset>
+  </div>
 
 </div>
