@@ -57,11 +57,31 @@ export class AppComponent {
     let i:any;
     if(this.t==".json")
     {
-      let re=' [ ';
       this.temp=this.temp.replace(/{/g,'%7B');
       this.temp=this.temp.replace(/}/g,'%7D');
       this.temp=this.temp.replace(/]/g,'%5D');
       this.temp=this.temp.replace(/[[\]]/g,'%5B');
+      console.log(this.temp);
+      let myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');    	
+      let options = new RequestOptions({ headers: myHeaders });
+      this.http.post('http://localhost:8090/Project_1/rest/UDPService/udpsen?'+'temp='+this.temp,this.t).subscribe(data=>console.log('Data sent'))
+      
+    }
+    else if(this.t==".csv")
+    {
+      this.temp=this.temp.replace(/\n/g, '%n');
+      console.log(this.temp);
+      let myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');    	
+      let options = new RequestOptions({ headers: myHeaders });
+      this.http.post('http://localhost:8090/Project_1/rest/UDPService/udpsen?'+'temp='+this.temp,this.t).subscribe(data=>console.log('Data sent'))
+      
+    }
+    else if(this.t==".txt")
+    {
+      this.temp=this.temp.replace(/ /g, ',');
+      this.temp=this.temp.replace(/\n/g, '%n');
       console.log(this.temp);
       let myHeaders = new Headers();
       myHeaders.append('Content-Type', 'application/json');    	
@@ -107,7 +127,8 @@ export class AppComponent {
   }
   sendtext(name,id,salary)
   {
-    this.temp=name+","+id+","+salary;
+    this.temp=name+","+salary+","+id;
+    this.t="form";
     console.log(this.temp);
     this.sending();
   }
